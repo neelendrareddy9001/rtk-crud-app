@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import "./Home.css";
-import { useContactsQuery } from "../services/contactApi";
+import { useContactsQuery, useDeleteContactMutation } from "../services/contactApi";
 
 // const data = [
 //   {
@@ -27,6 +27,7 @@ import { useContactsQuery } from "../services/contactApi";
 
 const Home = () => {
     const {data, error, isLoading, isSuccess, isFetching} = useContactsQuery();
+    const [deleteContact] = useDeleteContactMutation();
 
     useEffect(() => {
         if(error) {
@@ -36,6 +37,7 @@ const Home = () => {
 
   const handleDelete = async (id: any) => {
     if (window.confirm("Are you sure that you wanted to delete that user ?")) {
+       await deleteContact(id); 
       toast.success("Contact Deleted Successfully");
     }
   };
