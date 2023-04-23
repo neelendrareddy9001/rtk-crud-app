@@ -1,4 +1,5 @@
 import { useParams, Link } from "react-router-dom";
+import { useContactQuery } from "../services/contactApi";
 import "./UserInfo.css";
 
 const UserInfo = () => {
