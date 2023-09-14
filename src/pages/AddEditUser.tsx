@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-// import { toast } from "tostify";
+import { toast } from "react-toastify";
+
 import {
   useAddContactMutation,
   useContactQuery,
-  useUpdataContactMutation,
+  useUpdateContactMutation,
 } from "../services/contactApi";
 import "./AddEditUsers.css";
 
@@ -20,17 +21,29 @@ const AddEditUser = () => {
   const [editMode, setEditMode] = useState(false);
   const { name, email, contact } = formValue;
   const [addContact] = useAddContactMutation();
-  const [updataContact] = useUpdateContactMutation();
+  const [updateContact] = useUpdateContactMutation();
   const navigate = useNavigate();
   const { id } = useParams();
+
+  const { data, error, isFetching, isLoading } = useContactQuery(id!);
+
+  useEffect(() => {
+    if (error) {
+      toast.error("Something went wrong");
+    }
+  }, [error]);
 
   useEffect(() => {
     if (id) {
       setEditMode(true);
+      if (data) {
+        setFormValue({ ...data });
+      }
     } else {
       setEditMode(false);
+      setFormValue({ ...initialState });
     }
-  }, [id]);
+  }, [id, data]);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();

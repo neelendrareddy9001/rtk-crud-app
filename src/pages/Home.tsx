@@ -2,7 +2,10 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import "./Home.css";
-import { useContactsQuery, useDeleteContactMutation } from "../services/contactApi";
+import {
+  useContactsQuery,
+  useDeleteContactMutation,
+} from "../services/contactApi";
 
 // const data = [
 //   {
@@ -26,18 +29,18 @@ import { useContactsQuery, useDeleteContactMutation } from "../services/contactA
 // ];
 
 const Home = () => {
-    const {data, error, isLoading, isSuccess, isFetching} = useContactsQuery();
-    const [deleteContact] = useDeleteContactMutation();
+  const { data, error, isLoading, isSuccess, isFetching } = useContactsQuery();
+  const [deleteContact] = useDeleteContactMutation();
 
-    useEffect(() => {
-        if(error) {
-            toast.error("Someting went wrong");
-        }
-    }, [error])
+  useEffect(() => {
+    if (error) {
+      toast.error("Someting went wrong");
+    }
+  }, [error]);
 
   const handleDelete = async (id: any) => {
     if (window.confirm("Are you sure that you wanted to delete that user ?")) {
-       await deleteContact(id); 
+      await deleteContact(id);
       toast.success("Contact Deleted Successfully");
     }
   };
