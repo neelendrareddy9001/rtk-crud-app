@@ -7,18 +7,20 @@ import "./App.css";
 import Home from "./pages/Home";
 import AddEditUser from "./pages/AddEditUser";
 import UserInfo from "./pages/UserInfo";
-import { Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
       <ToastContainer />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/add" element={<AddEditUser />} />
-        <Route path="/update/:id" element={<AddEditUser />} />
-        <Route path="/view/:id" element={<UserInfo />} />
-      </Routes>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/add" element={<AddEditUser />} />
+          <Route path="/update/:id" element={<AddEditUser />} />
+          <Route path="/view/:id" element={<UserInfo />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
