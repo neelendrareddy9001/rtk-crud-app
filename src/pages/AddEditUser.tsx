@@ -25,7 +25,8 @@ const AddEditUser = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const { data, error, isFetching, isLoading } = useContactQuery(id!);
+  //isFetching, isLoading include in it
+  const { data, error } = useContactQuery(id!);
 
   useEffect(() => {
     if (error) {

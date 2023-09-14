@@ -29,7 +29,8 @@ import {
 // ];
 
 const Home = () => {
-  const { data, error, isLoading, isSuccess, isFetching } = useContactsQuery();
+  // isLoading, isSuccess, isFetching
+  const { data, error } = useContactsQuery();
   const [deleteContact] = useDeleteContactMutation();
 
   useEffect(() => {

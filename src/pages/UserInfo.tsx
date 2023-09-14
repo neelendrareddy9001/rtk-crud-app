@@ -6,7 +6,8 @@ import { useEffect } from "react";
 
 const UserInfo = () => {
   const { id } = useParams();
-  const { data, error, isFetching, isLoading } = useContactQuery(id!);
+  //isFetching, isLoading
+  const { data, error } = useContactQuery(id!);
 
   useEffect(() => {
     if (error) {

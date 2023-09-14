@@ -1,4 +1,5 @@
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+//getDefaultMiddleware
+import { configureStore } from "@reduxjs/toolkit";
 import { contactApi } from "./services/contactApi";
 
 export const store = configureStore({
